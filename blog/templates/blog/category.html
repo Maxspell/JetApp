@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          {% for post in post_list %}
+          <div class="col-lg-4 mb-4">
+            <div class="entry2">
+              <a href="{% url 'post_detail' pk=post.pk slug=post.slug %}"><img src="{{ post.image.url }}" alt="Image" class="img-fluid rounded"></a>
+              <div class="excerpt">
+              <span class="post-category text-white {{ post.category.badge }} mb-3">{{ post.category.title }}</span>
+              <div class="post-meta align-items-center text-left clearfix">
+                <span>{{ post.created|time:"H:i" }}, {{ post.created|date:"d M Y" }}</span>
+              </div>
+              <h2><a href="{% url 'post_detail' pk=post.pk slug=post.slug %}">{{ post.title }}</a></h2>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="row text-center pt-5 border-top">
+          <div class="col-md-12">
+            <div class="custom-pagination">
+              <span>1</span>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#">4</a>
+              <span>...</span>
+              <a href="#">15</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
